@@ -6,11 +6,12 @@ word_chars = secret_word.chars
 len = secret_word.length
 wrong_guesses_remaining = 7
 answer_found = false
-found_letters = []
+found_letters = []#array of booleans
 other_letters_tried = []
 
 
 puts "Let's play hangman! The word has #{len} letters. Type in a letter to make a guess."
+puts ""
 
 while(wrong_guesses_remaining > 0 && !answer_found)
   try = gets.chomp
@@ -27,12 +28,11 @@ while(wrong_guesses_remaining > 0 && !answer_found)
         end
       end
 
-      puts ""
       print "The letter " + try + " occurs " + characters_found.to_s + " time"
       if characters_found == 1
-        puts "s."
-      else
         puts "."
+      else
+        puts "s."
       end
 
       if found_a_letter == false
@@ -40,7 +40,12 @@ while(wrong_guesses_remaining > 0 && !answer_found)
           other_letters_tried << try
         end
         wrong_guesses_remaining -= 1
-        puts "You have " + wrong_guesses_remaining.to_s + " wrong guesses remaining."
+        print "You have " + wrong_guesses_remaining.to_s + " wrong guess"
+        if wrong_guesses_remaining != 1
+          puts "es remaining."
+        else
+          puts " remaining!!!!!!!!!!!"
+        end
       end
 
     else
@@ -57,13 +62,19 @@ while(wrong_guesses_remaining > 0 && !answer_found)
       end
     end
 
-    puts ""
-    print "You have ruled out these letters: "
+    if other_letters_tried.length != 0
+      puts ""
+      print "You have ruled out these letters: "
+    end
+
     for x in 0...other_letters_tried.length
       print other_letters_tried[x] + " "
     end
     puts ""
-    puts "Try another one!"
+    if !answer_found
+      puts "Try another one!"
+      puts ""
+    end
 end
 
 if answer_found
