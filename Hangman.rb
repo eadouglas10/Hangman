@@ -18,8 +18,8 @@ while(wrong_guesses_remaining > 0 && !answer_found)
   characters_found = 0
 
     if(try.to_i.to_s != try && try.to_f.to_s != try && try.length == 1)#single letter entered
-      secret_word.each_char do |x|
-        if x == try
+      for x in 0...len
+        if word_chars[x] == try
           found_letters[x] = true
           found_a_letter = true
           characters_found += 1
@@ -41,5 +41,6 @@ while(wrong_guesses_remaining > 0 && !answer_found)
       else
         print "_"
       end
+    end
 
 end
