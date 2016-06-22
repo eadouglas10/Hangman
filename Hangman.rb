@@ -2,6 +2,8 @@ words = ["thing", "table", "rig", "tirelessly", "apple", "school", "sweater", "a
 
 word_index = rand(0..words.length - 1)
 secret_word = words[word_index]
+word_chars = secret_word.chars
+len = secret_word.length
 wrong_guesses_remaining = 7
 answer_found = false
 found_letters = []
@@ -32,3 +34,12 @@ while(wrong_guesses_remaining > 0 && !answer_found)
       puts "Not a valid guess!"
       wrong_guesses_remaining -= 1
     end
+
+    for x in 0...len
+      if found_letters[x]
+        print word_chars[x]
+      else
+        print "_"
+      end
+
+end
